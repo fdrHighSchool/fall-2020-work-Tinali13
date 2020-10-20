@@ -1,8 +1,8 @@
 # FDR High School - AP CS A
 
-## Last Name: 
-## First Name: 
-## GitHub Username:
+## Last Name: Li 
+## First Name: Tina
+## GitHub Username: Tinali13
 
 
 ### General Workflow: 
