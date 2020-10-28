@@ -11,7 +11,7 @@ import java.util.Scanner;
    double evenly1;
    System.out.println("Please enter your restaurant bill without tax and tip:  " );
    restaurantbill = input.nextDouble();
-  System.out.println("Please enter how many people are here so it can be divided evenly: ");
+   System.out.println("Please enter how many people are here so it can be divided evenly: ");
    evenly = input.nextDouble();
    tax = 0.0875 * restaurantbill;
    System.out.println("This is tax amount: " +tax);
@@ -22,7 +22,7 @@ import java.util.Scanner;
    System.out.println("This is how much everyone needs to pay for it to be evenly: " +evenly1);
 
   }//end main method
-    }//end class
+  }//end class
 
 
     //add tax and tip and then split the bill evenly.

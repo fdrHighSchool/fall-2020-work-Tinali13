@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class Shapes{
   public static void main(String[] args) {
   Scanner input = new Scanner(System.in);
-     System.out.println("1 = circle, 2 = square, 3 = triangle, 4 = rectangle, 5 = cylinder, 6 = Sphere, 7 = Cube, 8 == RectangularPrism");
+     System.out.println(" 1 = circle\n 2 = square\n 3 = triangle\n 4 = rectangle\n 5 = cylinder\n 6 = Sphere\n 7 = Cube\n 8 == RectangularPrism");
         int object = input.nextInt();
 
         if (object == 1){
           System.out.println("Enter your circle radius in here: ");
           double radius = input.nextDouble();
-          double circlearea = radius * radius * 3.14;
+          double circlearea = radius * radius * Math.PI;
           System.out.println("The area of the circle is:" +circlearea);
         }
         else if (object == 2){
@@ -39,13 +39,13 @@ public class Shapes{
           double Height2 = input.nextDouble();
           System.out.println("Enter your cylinder Radius2: ");
           double Radius2 = input.nextDouble();
-          double volume = 3.14 * Radius2 * Radius2 * Height2;
+          double volume = Math.PI * Radius2 * Radius2 * Height2;
           System.out.println("The volume of the cylinder is:" +volume);
         }
         else if (object == 6){
           System.out.println("Enter your sphere Radius3:");
           double Radius3 = input.nextDouble();
-          double volume2 = 1.33 * 3.14 * Radius3 * Radius3 * Radius3;
+          double volume2 = 1.33 * Math.PI * Radius3 * Radius3 * Radius3;
           System.out.println("The volume of the sphere is:" +volume2);
         }
         else if (object == 7){
