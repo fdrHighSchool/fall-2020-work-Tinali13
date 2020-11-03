@@ -4,7 +4,14 @@ public class FracCalc {
      * Prompts user for input, passes that input to produceAnswer, then outputs the result.
      * @param args - unused
      */
-    public static void main(String[] args){
+     public static void main(String[] args) {
+      Scanner scan = new Scanner (System.in);
+      System.out.println("Enter your problem here: ");
+      String problem = scan.nextLine();
+      System.out.println(problem);
+      produceAnswer(problem);
+    }//end main
+
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
@@ -17,7 +24,16 @@ public class FracCalc {
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
-    public static String produceAnswer(String input){
+     public static String produceAnswer(String input){
+       String fraction1 = input.substring(0, input.indexOf(' '));
+       System.out.println("Frac 1:"  +fraction1);
+       String operator = input.substring(fraction1.length() + 1, fraction1.length() + 2);
+       System.out.println("Op:" +operator);
+       String fraction2 = input.substring(fraction1.length() + 3);
+       System.out.println("Frac 2:" +fraction2);
+       return (fraction2);
+      }
+     }
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
