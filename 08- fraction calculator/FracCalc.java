@@ -1,5 +1,5 @@
 import java.util.*;
-class FracCalc
+class Main
 {
     public static void main(String[] args)
     {
@@ -12,8 +12,6 @@ class FracCalc
             expression = expression.toLowerCase();
             if (!(expression.equals("quit")))
             {
-                // basically this is saying that if a user DID NOT write 'quit' then we want to do something //
-                // code goes here //
                 System.out.println(produceAnswer(expression));
             }
             // else - user does not want to continue //
@@ -38,13 +36,15 @@ class FracCalc
         System.out.println("Frac 2: " + fraction2);
         //return (fraction2);
 
+        //This part of the code prints out the first fraction, second fraction, and the operator used in the equation that the userInputed.
+
         // int Whole = findWhole(fraction2);
         // int Num = findNum(fraction2);
         // int Denom = findDenom(fraction2);
        String answer = "";
         switch (operator)
             {
-
+            //switch case is used in my case to organize the code better and use it to run the different operators.
             case "+":
                 System.out.println ("The operator is Addition.");
                 int whole1 = findWhole(fraction1);
@@ -53,23 +53,23 @@ class FracCalc
                 int denom1 = findDenom(fraction1);
                 int denom2 = findDenom(fraction2);
 
-                int num1 = findNum(fraction1);
-                int num2 = findNum(fraction2);
+                int num1 = toImproperNum(whole1, findNum(fraction1), denom1);
+                int num2 = toImproperNum(whole2, findNum(fraction2), denom2);
 
-                String improperFrac1 = toImproperFrac(whole1, num1, denom1);
-                String improperFrac2 = toImproperFrac(whole2, num2, denom2);
-
-                int GCDDenom = GCD(improperFrac1, improperFrac2);
+                int improperFrac1 = toImproperNum(whole1, num1, denom1);
+                int improperFrac2 = toImproperNum(whole2, num2, denom2);
 
 
-
-                int newNum1 = (GCDDenom/denom1) * Integer.parseInt(improperFrac1.substring(0, improperFrac1.indexOf("/")));
-                int newNum2 = (GCDDenom/denom2) * Integer.parseInt(improperFrac2.substring(0, improperFrac2.indexOf("/")));
+                int GCDDenom = GCD(num1, num2, denom1, denom2);
 
 
+                int newNum1 = (GCDDenom/denom1) * num1;
+                int newNum2 = (GCDDenom/denom2) * num2;
 
                 answer = (newNum1 + newNum2) + "/" + GCDDenom;
-                break;
+                break; //breaks are used in switch cases to stop that specific case and with this you can start another case on the next line.
+                //This case is used to run the addition operator.
+
             case "-" :
                 System.out.println ("The operator is Subtraction.");
                 int whole3 = findWhole(fraction1);
@@ -78,67 +78,62 @@ class FracCalc
                 int denom3 = findDenom(fraction1);
                 int denom4 = findDenom(fraction2);
 
-                int num3 = findNum(fraction1);
-                int num4 = findNum(fraction2);
-
-                String improperFrac3 = toImproperFrac(whole3, num3, denom3);
-                String improperFrac4 = toImproperFrac(whole4, num4, denom4);
-
-                int GCDDenom1 = GCD(improperFrac3, improperFrac4);
+                int num3 = toImproperNum(whole3, findNum(fraction1), denom3);
+                int num4 = toImproperNum(whole4, findNum(fraction2), denom4);
 
 
+                int improperFrac3 = toImproperNum(whole3, num3, denom3);
+                int improperFrac4 = toImproperNum(whole4, num4, denom4);
 
-                int newNum3 = (GCDDenom1/denom3) * Integer.parseInt(improperFrac3.substring(0, improperFrac4.indexOf("/")));
-                int newNum4 = (GCDDenom1/denom4) * Integer.parseInt(improperFrac3.substring(0, improperFrac4.indexOf("/")));
+                int GCDDenom1 = GCD(num3, num4, denom3, denom4);
+
+
+                int newNum3 = (GCDDenom1/denom3) * num3;
+                int newNum4 = (GCDDenom1/denom4) * num4;
                 answer = (newNum3 - newNum4) + "/" + GCDDenom1;
                 break;
-            case "*":
-                System.out.println ("The operator is Multipication.");
+
+            case "/":
+                System.out.println ("The operator is Division.");
                 int whole5 = findWhole(fraction1);
                 int whole6 = findWhole(fraction2);
 
                 int denom5 = findDenom(fraction1);
                 int denom6 = findDenom(fraction2);
 
-                int num5 = findNum(fraction1);
-                int num6 = findNum(fraction2);
+                int num5 = toImproperNum(whole5, findNum(fraction1), denom5);
+                int num6 = toImproperNum(whole6, findNum(fraction2), denom6);
 
-                String improperFrac5 = toImproperFrac(whole5, num5, denom5);
-                String improperFrac6 = toImproperFrac(whole6, num6, denom6);
+                int improperFrac5 = toImproperNum(whole5, num5, denom5);
+                int improperFrac6 = toImproperNum(whole6, num6, denom6);
 
-                int GCDDenom2 = GCD(improperFrac5, improperFrac6);
-
-
-
-                int newNum5 = (GCDDenom2/denom5) * Integer.parseInt(improperFrac5.substring(0, improperFrac6.indexOf("/")));
-                int newNum6 = (GCDDenom2/denom6) * Integer.parseInt(improperFrac5.substring(0, improperFrac6.indexOf("/")));
-                answer = (newNum5 * newNum6) + "/" + GCDDenom2;
+                int GCDDenom2 = GCD(num5, num6, denom5, denom6);
+                answer = (num5 * denom6) + "/" + (num6 * denom5);
                 break;
-            case "/":
-                System.out.println ("The operator is Division.");
+
+            case "*":
+                System.out.println ("The operator is Multiplication.");
                 int whole7 = findWhole(fraction1);
                 int whole8 = findWhole(fraction2);
 
                 int denom7 = findDenom(fraction1);
                 int denom8 = findDenom(fraction2);
 
-                int num7 = findNum(fraction1);
-                int num8 = findNum(fraction2);
+                int num7 = toImproperNum(whole7, findNum(fraction1), denom7);
+                int num8 = toImproperNum(whole8, findNum(fraction2), denom8);
 
-                String improperFrac7 = toImproperFrac(whole7, num7, denom7);
-                String improperFrac8 = toImproperFrac(whole8, num8, denom8);
+                int improperFrac7 = toImproperNum(whole7, findNum(fraction1), denom7);
+                int improperFrac8 = toImproperNum(whole8, findNum(fraction2), denom8);
 
-                int GCDDenom3 = GCD(improperFrac7, improperFrac8);
+                int GCDDenom3 = GCD(num7, num8, denom7, denom8);
 
 
-
-                int newNum7 = (GCDDenom3/denom7) * Integer.parseInt(improperFrac7.substring(0, improperFrac8.indexOf("/")));
-                int newNum8 = (GCDDenom3/denom8) * Integer.parseInt(improperFrac7.substring(0, improperFrac8.indexOf("/")));
-                answer = (newNum7 / newNum8) + "/" + GCDDenom3;
+                answer = (num7 * num8) + "/" + (denom7 * denom8);
                 break;
+
             default:
                 System.out.println ("Not a valid operator.");
-
+                //defualt is activated when the UserInput isnt using any of the operators in the cases above.
 
             }//end switch(operator)
 
@@ -159,9 +154,9 @@ class FracCalc
         }
         else
           return Integer.parseInt(str);
-          //what does this return?
-    }//end findWhole function
+          //this function returns the string because its none of the others above it just prints out the variable stored in the string.
 
+    }//end findWhole function
 
 
     public static int findNum (String str)
@@ -181,7 +176,6 @@ class FracCalc
     }//end findNum
 
 
-
     public static int findDenom(String str)
     {
         if (str.contains("/"))
@@ -191,30 +185,31 @@ class FracCalc
         else
         {
             return 1;
-        }
+        }//This returns 1 because if its none of the cases above then the denominator will be 1.
+
     }//end findDenom
 
-    public static String toImproperFrac(int whole, int Num, int Denom)
+    public static int toImproperNum(int whole, int Num, int Denom)
     {
         int numerator = (Denom * whole) + Num;
-        String improperFrac = numerator + "/" + Denom;
-        return improperFrac;
-        // this is to turn the fractions into improper fractions.
+        // String improperFrac = numerator + "/" + Denom;
+        return numerator;
+        // this function turns the fractions into improper fractions.
     }//end toImproperFrac
 
-    public static int GCD (String frac1, String frac2){
-      int numerator1 = Integer.parseInt(frac1.substring(0, frac1.indexOf('/')));
-      int denominator1 = Integer.parseInt(frac1.substring(frac1.indexOf("/") + 1));
+    public static int GCD (int num1, int num2, int denom1, int denom2){
+      // int numerator1 = Integer.parseInt(frac1.substring(0, frac1.indexOf('/')));
+      // int denominator1 = Integer.parseInt(frac1.substring(frac1.indexOf("/") + 1));
 
-      int numerator2 = Integer.parseInt(frac2.substring(0, frac2.indexOf('/')));
-      int denominator2 = Integer.parseInt(frac2.substring(frac2.indexOf("/") + 1));
+      // int numerator2 = Integer.parseInt(frac2.substring(0, frac2.indexOf('/')));
+      // int denominator2 = Integer.parseInt(frac2.substring(frac2.indexOf("/") + 1));
 
-      if(denominator1 != denominator2){
-        int newDenom = denominator1 * denominator2;
+      if(denom1 != denom2){
+        int newDenom = denom1 * denom2;
         return newDenom;
       }
 
-      return denominator1;
+      return denom1;
 
     } //end GCD
 
